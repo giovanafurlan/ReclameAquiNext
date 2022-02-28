@@ -1,5 +1,5 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Avatar, Badge, Box, ChakraProvider, Heading, Image, LinkBox, LinkOverlay, Progress, Stack, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Tab, TabList, TabPanel, TabPanels, Tabs, Text, Wrap, WrapItem } from '@chakra-ui/react'
-import { ChatIcon, CheckCircleIcon, CloseIcon, StarIcon } from '@chakra-ui/icons'
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, ChakraProvider, Image, LinkBox, Progress, Stack, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { ChatIcon, CheckCircleIcon, CloseIcon } from '@chakra-ui/icons'
 
 function Home() {
 
