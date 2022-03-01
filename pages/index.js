@@ -1,477 +1,139 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, ChakraProvider, Image, LinkBox, Progress, Stack, Stat, StatArrow, StatHelpText, StatLabel, StatNumber, Tab, TabList, TabPanel, TabPanels, Tabs, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, ChakraProvider, Image, Input, Link, LinkBox, Progress, Stack, Stat, StatArrow,StatNumber, Text } from '@chakra-ui/react'
 import { ChatIcon, CheckCircleIcon, CloseIcon } from '@chakra-ui/icons'
+import React from 'react'
 
 function Home() {
 
-    const indice = {
-      imageUrl: 'https://cdn.picpng.com/medal/medal-web-31797.png',
-      imageAlt: 'Medal of good rating',
-      ra: 'RA1000',
-      rating: '8.7/10',
-      formattedDate: '01/08/2021 - 31/01/2022'
-    }
+  const driver={
+        imageUrl: 'https://cdn.picpng.com/medal/medal-web-31797.png',
+        imageAlt: 'Logo',
+        logoURL: 'https://raichu-uploads.s3.amazonaws.com/company_142ed4d8-665f-4124-b401-796783e932a7.png',
+        nomeLogo: 'Americanas Marketplace',
 
-    const total = {
-      complaint: '3000',
-      answered: '3001',
-    }
+        URL: 'https://www.reclameaqui.com.br/empresa/americanas-com-loja-online/',
+        ra_descricao: 'A Americanas é uma das maiores varejistas do Brasil e, no Marketplace, comercializa em sua loja online, itens de empresas parceiras.',
+        score: '8.7/10',
+        periodo: '01/08/2021 - 31/01/2022',
+        reclamacoes: '3000',
+        respondidas: '3001',
+        porc_respondidas: '98.9',
+        porc_negocio: '81',
+        porc_solucao: '91.6',
+        porc_nota: '7.95',
+        nao_respondidas: '280',
+        avaliadas: '14878',
+  }
 
-    const progresso = {
-      answered: '98.9',
-      back: '81',
-      solution: '91.6',
-      score: '7.95'
-    }
+  function Buscar(){
 
-    const more = {
-      not: '280',
-      total: '14878',
-    }
+  }
 
   return (
     <ChakraProvider>
-      {/* <Wrap>
-        <WrapItem>
-          <Avatar size='xl' name='Logo' src='https://raichu-uploads.s3.amazonaws.com/logo_americanas-com-loja-online_wPPyZK.png' />{' '}
-          <Text fontSize='3xl'>Americanas - Loja Online</Text>
-        </WrapItem>
-      </Wrap> */}
-      <Box borderWidth='1px' borderRadius='lg' overflow='hidden'>
-      <Accordion defaultIndex={[0]} allowMultiple>
-        <AccordionItem>
-          <h2>
-            <AccordionButton>
-              <Box flex='1' textAlign='left' fontWeight={600}>
-                Reputação
+      <Box borderWidth='1px' borderRadius='lg' overflow='hidden' m="2vw">
+        <Box flex='1' textAlign='left' fontWeight={600} fontSize="20px" m="1vw">
+          <Text>Reclame Aqui</Text>
+          <Box display="flex">
+            <Input
+              value={driver.URL}
+              placeholder='Here is a sample placeholder'
+              size='md'/>
+              <Button
+              colorScheme='green'
+              type='submit'
+              ml="1vw"
+              onClick={Buscar()}
+            >
+              Buscar
+            </Button>
+          </Box>
+        </Box>
+          <Box flex='1' textAlign='left' fontWeight={600} fontSize="20px" m="1vw" mt="3vw">
+                  Reputação
+          </Box>
+            <Box ml="1vw" mt="1vw" display="flex">
+                <Avatar name='Logo' size="lg" src={driver.logoURL} />
+                <Box flexDirection="column" ml="1vw">
+                  <Link fontSize='lg' fontWeight={600} href={driver.URL} target="_blank">{driver.nomeLogo}</Link>
+                  <Text fontSize='md' fontWeight={600}>Sobre</Text>
+                  <Text fontSize='md' mb="1vw">{driver.ra_descricao}</Text>
+                </Box>
               </Box>
-              <AccordionIcon />
-            </AccordionButton>
-          </h2>
-          <Tabs isFitted>
-            <TabList mb='1em' fontSize="10px">
-              <Tab>Seis Meses</Tab>
-              <Tab>12 meses</Tab>
-              <Tab>2021</Tab>
-              <Tab>2020</Tab>
-              <Tab>Geral</Tab>
-            </TabList>
-              <TabPanels>
-              {/* Seis Meses */}
-                <TabPanel pl="0" pr="0" pt="0">
-                  <AccordionPanel pb={4} p="0">
-                    <Box>
-                      <Stat backgroundColor="#def0d2" p="10px">
-                        <Image src={indice.imageUrl} alt={indice.imageAlt} w={20} h={20} float="left" p="10px"/>
-                        <StatLabel fontWeight={600}>{indice.ra}</StatLabel>
-                        <StatNumber>{indice.rating}</StatNumber>
-                        <StatHelpText>
-                          <StatArrow type='increase' />
-                          {indice.formattedDate}
-                        </StatHelpText>
-                      </Stat>
-                    <Box display="flex" p="10px" justifyContent="space-around">
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Reclamações
-                        </Box>
-                        <Text fontWeight="600">
-                        <ChatIcon mr="15px"/>
-                          {total.complaint}
-                        </Text>
-                      </LinkBox>
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          {total.answered}
-                        </Text>
-                      </LinkBox>
-                    </Box>
-                    <Stack m="2vw" w="75vw" >
-                      <Text fontSize='md'>Reclamações respondidas</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.answered} borderRadius={40} float="left"/>
-                      <Text fontSize='md' fontWeight={600}>98.9%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Voltariam a fazer negócio</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.back} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>81%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Índice de solução</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.solution} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>91.6%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Nota do consumidor</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.score} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>7.95</Text>
-                    </Stack>
-                    <Box display="flex" p="10px" textAlign="center" justifyContent="space-around">
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Não Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                        <CloseIcon mr="15px"/>
-                          280
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.not} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Avaliadas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          14878
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.total} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                    </Box>
+              <Box>
+                <Stat backgroundColor="#def0d2" p="10px">
+                  <StatNumber ml="2vw">{driver.score}</StatNumber>
+                    <StatArrow type='increase' ml="2vw"/>
+                          {driver.periodo}
+                </Stat>
+                <Box display="flex" p="10px" justifyContent="space-around">
+                <LinkBox as='article'  w='xs' p='4' borderWidth='1px' rounded='md' textAlign="center">
+                  <Box fontSize="18px">
+                    Reclamações
                   </Box>
-                </AccordionPanel>
-              </TabPanel>
-              {/* 12 meses */}
-              <TabPanel pl="0" pr="0" pt="0">
-                  <AccordionPanel pb={4} p="0">
-                    <Box>
-                      <Stat backgroundColor="#def0d2" p="10px">
-                        <Image src={indice.imageUrl} alt={indice.imageAlt} w={20} h={20} float="left" p="10px"/>
-                        <StatLabel fontWeight={600}>{indice.ra}</StatLabel>
-                        <StatNumber>{indice.rating}</StatNumber>
-                        <StatHelpText>
-                          <StatArrow type='increase' />
-                          {indice.formattedDate}
-                        </StatHelpText>
-                      </Stat>
-                    <Box display="flex" p="10px" justifyContent="space-around">
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Reclamações
-                        </Box>
-                        <Text fontWeight="600">
-                        <ChatIcon mr="15px"/>
-                          {total.complaint}
-                        </Text>
-                      </LinkBox>
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          {total.answered}
-                        </Text>
-                      </LinkBox>
-                    </Box>
-                    <Stack m="2vw" w="75vw" >
-                      <Text fontSize='md'>Reclamações respondidas</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.answered} borderRadius={40} float="left"/>
-                      <Text fontSize='md' fontWeight={600}>98.9%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Voltariam a fazer negócio</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.back} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>81%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Índice de solução</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.solution} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>91.6%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Nota do consumidor</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.score} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>7.95</Text>
-                    </Stack>
-                    <Box display="flex" p="10px" textAlign="center" justifyContent="space-around">
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Não Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                        <CloseIcon mr="15px"/>
-                          280
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.not} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Avaliadas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          14878
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.total} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                    </Box>
+                  <Text fontWeight="600">
+                  <ChatIcon mr="15px"/>
+                    {driver.reclamacoes}
+                  </Text>
+                </LinkBox>
+                <LinkBox as='article' w='xs' p='4' borderWidth='1px' rounded='md' textAlign="center">
+                  <Box fontSize="18px">
+                    Respondidas
                   </Box>
-                </AccordionPanel>
-              </TabPanel>
-              {/* 2021 */}
-              <TabPanel pl="0" pr="0" pt="0">
-                  <AccordionPanel pb={4} p="0">
-                    <Box>
-                      <Stat backgroundColor="#def0d2" p="10px">
-                        <Image src={indice.imageUrl} alt={indice.imageAlt} w={20} h={20} float="left" p="10px"/>
-                        <StatLabel fontWeight={600}>{indice.ra}</StatLabel>
-                        <StatNumber>{indice.rating}</StatNumber>
-                        <StatHelpText>
-                          <StatArrow type='increase' />
-                          {indice.formattedDate}
-                        </StatHelpText>
-                      </Stat>
-                    <Box display="flex" p="10px" justifyContent="space-around">
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Reclamações
-                        </Box>
-                        <Text fontWeight="600">
-                        <ChatIcon mr="15px"/>
-                          {total.complaint}
-                        </Text>
-                      </LinkBox>
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          {total.answered}
-                        </Text>
-                      </LinkBox>
-                    </Box>
-                    <Stack m="2vw" w="75vw" >
-                      <Text fontSize='md'>Reclamações respondidas</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.answered} borderRadius={40} float="left"/>
-                      <Text fontSize='md' fontWeight={600}>98.9%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Voltariam a fazer negócio</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.back} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>81%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Índice de solução</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.solution} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>91.6%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Nota do consumidor</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.score} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>7.95</Text>
-                    </Stack>
-                    <Box display="flex" p="10px" textAlign="center" justifyContent="space-around">
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Não Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                        <CloseIcon mr="15px"/>
-                          280
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.not} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Avaliadas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          14878
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.total} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                    </Box>
+                  <Text fontWeight="600">
+                    <CheckCircleIcon mr="15px"/>
+                    {driver.respondidas}
+                  </Text>
+                </LinkBox>
+              </Box>
+              <Stack m="2vw" w="75vw" >
+                <Text fontSize='lg'>Reclamações respondidas</Text>
+                <Progress colorScheme='green' size='lg' value={driver.porc_respondidas} borderRadius={40}/>
+                <Text fontSize='lg' fontWeight={600}>98.9%</Text>
+              </Stack>
+              <Stack m="2vw" w="75vw">
+                <Text fontSize='lg'>Voltariam a fazer negócio</Text>
+                <Progress colorScheme='green' size='lg' value={driver.porc_negocio} float="left" borderRadius={40}/>
+                <Text fontSize='lg' fontWeight={600}>81%</Text>
+              </Stack>
+              <Stack m="2vw" w="75vw">
+                <Text fontSize='lg'>Índice de solução</Text>
+                <Progress colorScheme='green' size='lg' value={driver.porc_solucao} float="left" borderRadius={40}/>
+                <Text fontSize='lg' fontWeight={600}>91.6%</Text>
+              </Stack>
+              <Stack m="2vw" w="75vw">
+                <Text fontSize='lg'>Nota do consumidor</Text>
+                <Progress colorScheme='green' size='lg' value={driver.porc_nota} float="left" borderRadius={40}/>
+                <Text fontSize='lg' fontWeight={600}>7.95</Text>
+              </Stack>
+              <Box display="flex" p="10px" textAlign="center" justifyContent="space-around">
+                <LinkBox as='article' w='xs' p='4' borderWidth='1px' rounded='md'>
+                  <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC' fontSize="18px" textAlign="center">
+                    Não Respondidas
                   </Box>
-                </AccordionPanel>
-              </TabPanel>
-              {/* 2020 */}
-              <TabPanel pl="0" pr="0" pt="0">
-                  <AccordionPanel pb={4} p="0">
-                    <Box>
-                      <Stat backgroundColor="#def0d2" p="10px">
-                        <Image src={indice.imageUrl} alt={indice.imageAlt} w={20} h={20} float="left" p="10px"/>
-                        <StatLabel fontWeight={600}>{indice.ra}</StatLabel>
-                        <StatNumber>{indice.rating}</StatNumber>
-                        <StatHelpText>
-                          <StatArrow type='increase' />
-                          {indice.formattedDate}
-                        </StatHelpText>
-                      </Stat>
-                    <Box display="flex" p="10px" justifyContent="space-around">
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Reclamações
-                        </Box>
-                        <Text fontWeight="600">
-                        <ChatIcon mr="15px"/>
-                          {total.complaint}
-                        </Text>
-                      </LinkBox>
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          {total.answered}
-                        </Text>
-                      </LinkBox>
-                    </Box>
-                    <Stack m="2vw" w="75vw" >
-                      <Text fontSize='md'>Reclamações respondidas</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.answered} borderRadius={40} float="left"/>
-                      <Text fontSize='md' fontWeight={600}>98.9%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Voltariam a fazer negócio</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.back} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>81%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Índice de solução</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.solution} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>91.6%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Nota do consumidor</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.score} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>7.95</Text>
-                    </Stack>
-                    <Box display="flex" p="10px" textAlign="center" justifyContent="space-around">
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Não Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                        <CloseIcon mr="15px"/>
-                          280
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.not} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Avaliadas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          14878
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.total} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                    </Box>
+                  <Text fontWeight="600">
+                  <CloseIcon mr="15px"/>
+                    280
+                  </Text>
+                  <Stack alignItems="center">
+                    <Progress colorScheme='green' size='lg' value={driver.nao_respondidas} borderRadius={40} w="20"/>
+                  </Stack>
+                </LinkBox>
+                <LinkBox as='article' w='xs' p='4' rounded='md' borderWidth='1px' rounded='md'>
+                  <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC' fontSize="18px">
+                    Avaliadas
                   </Box>
-                </AccordionPanel>
-              </TabPanel>
-              {/* Geral */}
-              <TabPanel pl="0" pr="0" pt="0">
-                  <AccordionPanel pb={4} p="0">
-                    <Box>
-                      <Stat backgroundColor="#def0d2" p="10px">
-                        <Image src={indice.imageUrl} alt={indice.imageAlt} w={20} h={20} float="left" p="10px"/>
-                        <StatLabel fontWeight={600}>{indice.ra}</StatLabel>
-                        <StatNumber>{indice.rating}</StatNumber>
-                        <StatHelpText>
-                          <StatArrow type='increase' />
-                          {indice.formattedDate}
-                        </StatHelpText>
-                      </Stat>
-                    <Box display="flex" p="10px" justifyContent="space-around">
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Reclamações
-                        </Box>
-                        <Text fontWeight="600">
-                        <ChatIcon mr="15px"/>
-                          {total.complaint}
-                        </Text>
-                      </LinkBox>
-                      <LinkBox as='article' p='4' borderWidth='1px' rounded='md'>
-                        <Box as='time'>
-                          Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          {total.answered}
-                        </Text>
-                      </LinkBox>
-                    </Box>
-                    <Stack m="2vw" w="75vw" >
-                      <Text fontSize='md'>Reclamações respondidas</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.answered} borderRadius={40} float="left"/>
-                      <Text fontSize='md' fontWeight={600}>98.9%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Voltariam a fazer negócio</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.back} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>81%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Índice de solução</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.solution} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>91.6%</Text>
-                    </Stack>
-                    <Stack m="2vw" w="75vw">
-                      <Text fontSize='md'>Nota do consumidor</Text>
-                      <Progress colorScheme='green' size='md' value={progresso.score} float="left" borderRadius={40}/>
-                      <Text fontSize='md' fontWeight={600}>7.95</Text>
-                    </Stack>
-                    <Box display="flex" p="10px" textAlign="center" justifyContent="space-around">
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Não Respondidas
-                        </Box>
-                        <Text fontWeight="600">
-                        <CloseIcon mr="15px"/>
-                          280
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.not} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                      <LinkBox as='article' w='xs' p='4' rounded='md'>
-                        <Box as='time' dateTime='2021-01-15 15:30:00 +0000 UTC'>
-                          Avaliadas
-                        </Box>
-                        <Text fontWeight="600">
-                          <CheckCircleIcon mr="15px"/>
-                          14878
-                        </Text>
-                        <Stack alignItems="center">
-                          <Progress colorScheme='green' size='md' value={more.total} borderRadius={40} w="20"/>
-                        </Stack>
-                      </LinkBox>
-                    </Box>
-                  </Box>
-                </AccordionPanel>
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </AccordionItem>
-      </Accordion>
-    </Box>
-    </ChakraProvider>
+                  <Text fontWeight="600">
+                    <CheckCircleIcon mr="15px"/>
+                    14878
+                  </Text>
+                  <Stack alignItems="center">
+                    <Progress colorScheme='green' size='lg' value={driver.avaliadas} borderRadius={40} w="20"/>
+                  </Stack>
+                </LinkBox>
+              </Box>
+            </Box>
+          </Box>
+        </ChakraProvider>
   )
 }
 
